@@ -15,6 +15,29 @@ def print_coffee_menu(MENU):
 
 def total_input_money(quarters, dimes, nickels, pennies):
     money_sum = quarters * .25 + dimes * .1 + nickels * .05 + pennies * .01
-    return(money_sum)
+    return(float(money_sum))
 
-def enough_money(total_money, price):
+def get_drinktype(selection):
+    if(selection == 1):
+        type = "espresso"
+    elif(selection == 2):
+        type = "latte"
+    else:
+        type = "cappuccino"
+    return(type)
+
+def check_resources(resources, water, coffee, milk):
+    ret_str = ""
+    if ( resources["water"] < water):
+        ret_str = "not enough water"
+    if ( resources["water"] < coffee):
+        ret_str = ret_str + ", not enough coffee"
+    if (resources["water"] < milk):
+        ret_str = ret_str + ", not enough milk"
+    return(ret_str)
+
+def update_resources(resources, water, coffee, milk):
+    resources["water"] = resources["water"] - water
+    resources["coffee"] = resources["coffee"] - coffee
+    resources["milk"] = resources["milk"] - milk
+    return(resources)
